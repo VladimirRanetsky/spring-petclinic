@@ -1,5 +1,4 @@
 pipeline {
-<<<<<<< HEAD
     agent {
         docker {
             image 'maven' 
