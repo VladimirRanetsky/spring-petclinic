@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'maven' 
-            args '-v /var/jenkins_home/.m2:/root/.m2'
+            args '-v maven-packages:/root/.m2'
         }
     }
     stages {
