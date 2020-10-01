@@ -5,14 +5,11 @@ pipeline {
             args '-v /home:/root/.m2'
         }
     }
-
-  }
-  stages {
-    stage('Build') {
-      steps {
-        sh 'mvn clean install'
-      }
+    stages {
+        stage('Build') { 
+            steps {
+                sh 'mvn clean install'
+            }
+        }
     }
-
-  }
 }
