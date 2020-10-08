@@ -18,7 +18,7 @@ pipeline {
             steps {
                 unstash name: 'target'
                 sh 'cd ${WORKSPACE}'
-                sh 'docker build -t test-petclinic-image --build-arg JAR_FILE=$(find ./target/ -maxdepth 1 -type f -name "*.jar") .'
+                sh 'docker build -t localhost:5000/test-petclinic-image --build-arg JAR_FILE=$(find ./target/ -maxdepth 1 -type f -name "*.jar") .'
             }
         }
 
