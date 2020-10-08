@@ -1,5 +1,3 @@
-def resultFilePath = "${WORKSPACE}/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar"
-
 pipeline {
     agent {
         docker {
@@ -10,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {            
             steps {
-                sh 'echo ${resultFilePath}'
+                sh 'echo ${env.WORKSPACE}/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
