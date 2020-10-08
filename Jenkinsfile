@@ -14,9 +14,8 @@ pipeline {
 
         stage('Create Docker Container') {            
             steps {
-                script {
-                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
-                }
+                sh 'docker inspect -f . maven'
+                sh 'docker build --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
             }
         }
     }
