@@ -14,7 +14,7 @@ pipeline {
 
         stage('Create Docker Container') {
                 steps {
-                    withDockerServer('tcp://localhost:2345') {
+                    withDockerServer([credentialsId: '123', 'tcp://localhost:2376']) {
                         sh 'docker build --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
                     }
             }
