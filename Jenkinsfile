@@ -21,5 +21,11 @@ pipeline {
                 sh 'docker build -t test-petclinic-image --build-arg JAR_FILE=$(find ./target/ -maxdepth 1 -type f -name "*.jar") .'
             }
         }
+
+        stage('Push Container') {
+            steps {
+                sh 'docker push localhost:5000/test-petclinic-image'
+            }
+        }
     }
 }
