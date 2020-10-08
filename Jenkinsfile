@@ -17,7 +17,7 @@ pipeline {
         stage('Create Docker Container') {
             steps {
                 unstash name: 'target'
-                sh 'docker build -t test-petclinic-image --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
+                sh 'docker build -t test-petclinic-image --build-arg JAR_FILE=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
             }
         }
     }
