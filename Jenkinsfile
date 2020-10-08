@@ -12,11 +12,11 @@ pipeline {
             }
         }
 
-        stage('Create Docker Container') {            
-            withDockerServer('tcp://localhost:2345') {
+        stage('Create Docker Container') {
                 steps {
-                sh 'docker build --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
-            }
+                    withDockerServer('tcp://localhost:2345') {
+                        sh 'docker build --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
+                    }
             }
         }
     }
