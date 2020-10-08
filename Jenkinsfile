@@ -14,7 +14,9 @@ pipeline {
 
         stage('Create Docker Container') {            
             steps {
-                sh 'docker build --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.jar") .'
+                script {
+                    dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                }
             }
         }
     }
