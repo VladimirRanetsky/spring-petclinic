@@ -1,14 +1,25 @@
 pipeline {
-    agent {
-        docker {
-            image 'maven' 
-            args '-v /home:/root/.m2'
-        }
-    }
     stages {
         stage('Build') { 
+            agent {
+                docker {
+                    image 'maven' 
+                    args '-v /root/.m2:/root/.m2'
+                }
+            }
             steps {
-                sh 'mvn clean install'
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+        stage ('Build docker image') {
+            agent {
+                docker {
+                    image 'maven'
+                    args '-v /root/.m2:/root/.m2 -v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
+            steps {
+                sh 'mvn -Ddocker.skip=false -Ddocker.host=unix:///var/run/docker.sock docker:build'
             }
         }
     }
