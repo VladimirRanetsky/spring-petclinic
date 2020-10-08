@@ -8,8 +8,13 @@ pipeline {
     stages {
         stage('Build') {            
             steps {
-                sh 'echo ${WORKSPACE}/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar'
                 sh 'mvn -B -DskipTests clean package'
+            }
+        }
+
+        stage('Create Docker Container') {            
+            steps {
+                sh "docker build --build-arg JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name '*.jar') ."
             }
         }
     }
