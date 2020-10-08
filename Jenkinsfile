@@ -7,8 +7,8 @@ pipeline {
     }
     stages {
         stage('Build') {            
-            steps {
-                sh 'mvn -B -DskipTests clean package'
+            maven.inside {
+                sh "mvn -o -Dmaven.repo.local=${pwd tmp: true}/m2repo -f app -B -DskipTests clean package"
             }
         }
 
