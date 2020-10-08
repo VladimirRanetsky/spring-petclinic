@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Build') {            
             steps {
-                sh 'echo ${env.WORKSPACE}/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar'
+                sh 'echo ${WORKSPACE}/target/spring-petclinic-2.3.0.BUILD-SNAPSHOT.jar'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
