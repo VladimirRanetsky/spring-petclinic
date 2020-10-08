@@ -8,8 +8,7 @@ pipeline {
     stages {
         stage('Build') {            
             steps {
-                sh 'echo JAR_PATH=$(find ${WORKSPACE}/target/ -maxdepth 1 -type f -name "*.xml")'
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests package'
             }
         }
 
