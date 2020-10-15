@@ -32,6 +32,7 @@ pipeline {
             steps {
                 sh 'docker pull localhost:5000/test-petclinic-image'
                 sh 'docker container run --name petclinic --rm --detach -u root --privileged=true --publish 14002:8080 localhost:5000/test-petclinic-image'
+                sh 'sleep 10'
                 sh 'curl localhost:14002'
             }
         }
